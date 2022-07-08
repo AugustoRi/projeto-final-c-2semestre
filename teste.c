@@ -32,8 +32,10 @@ void verificarMatriz(int matriz[TAM][TAM]) {
       for (int k = 0; k < TAM; k++) {
         if (matriz[j][k] < matriz[1][1]) {
           matriz[j][k] = 0;
-        } else {
+        } else if (matriz[j][k] > matriz[1][1]){
           matriz[j][k] = 1;
+        } else {
+          matriz[j][k] = matriz[j][k];
         }
     }
   }
