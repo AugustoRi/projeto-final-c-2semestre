@@ -1,4 +1,4 @@
-#include "pgm.h"
+#include "functions.h"
 
 void readPGMImage(struct pgm *pio, char *filename){
 	FILE *fp;
