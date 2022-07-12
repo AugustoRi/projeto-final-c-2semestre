@@ -53,6 +53,13 @@ void readPGMImage(struct pgm *pio, char *filename){
 
 }
 
+void getArray(unsigned char *array, int col, int lin) {
+	for (int i = 0; i < col * lin; i++) {
+		int successor = 0, predecessor = 0, center = *(array + i);
+
+	}
+}
+
 void writePGMImage(struct pgm *pio, char *filename){
 	FILE *fp;
 	char ch;
