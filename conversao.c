@@ -95,14 +95,14 @@ int converterBinario(int *bin, int *p) {
 	}
 
 	//terceiro for 
-	for (int l = TAM * TAM - 3; l > 0; l = l - 3) {
+	for (int l = 5; l > 1; l -= 3) {
 		*(bin + a) = *(p + l);
     printf("%d ", *(bin + a));
 		a++;
 	}
 
 	//quarto for
-	for (int h = 1; h >= 0; h -= 1) {
+	for (int h = 1; h >= 0; h--) {
 		*(bin + a) = *(p + h);
     printf("%d ", *(bin + a));
 		a++;
@@ -110,7 +110,7 @@ int converterBinario(int *bin, int *p) {
 
 // ================
    printf("\n\n");
-  // for(int r = 0; r < 8; r++) printf("%3d | ", bin[r]);
+  for(int r = 0; r < 8; r++) printf("%3d | ", bin[r]);
 
 
   //CONVERTER BINARIO PARA DECIMAL
