@@ -109,7 +109,7 @@ int converterBinario(int *bin, int *p) {
 	}
 
 // ================
-   printf("\n\n");
+   printf("\n");
   // for(int r = 0; r < 8; r++) printf("%3d | ", bin[r]);
 
 
