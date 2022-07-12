@@ -1,5 +1,6 @@
 #include "functions.h"
 #include <dirent.h>
+#include <string.h>
 
 int main(int argc, char *argv[]) {
 	DIR *d;
@@ -9,6 +10,8 @@ int main(int argc, char *argv[]) {
 
 	if (d) {
 		while ((dir = readdir(d)) != NULL) {
+      if(strcmp(".", dir->d_name) == 0 || strcmp("..", dir->d_name)== 0)
+        continue;
 			printf("%s\n", dir->d_name);
 		}
 		closedir(d);
