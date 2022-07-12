@@ -1,21 +1,21 @@
 #include <stdio.h>
-#include <time.h>
 #include <stdlib.h>
+#include <time.h>
 #include <math.h>
 
 #define TAM 3
-
+#define MAX 3
 // PROTÓTIPOS
 void preencherMatriz(int **p);
 void imprimirMatriz(int **p);
 void verificarMatriz(int **p);
-void converterBinario(int *bin, int **p);
+int converterBinario(int *bin, int **p);
 
 int main() {
   int **p_matriz = NULL;
   int *p_bin = NULL;
 
-  // ===Alocando a matriz dinamicamente
+  // === Alocando a matriz dinamicamente
   p_bin = malloc(sizeof(int) * 8);
   p_matriz = malloc(sizeof(int) * TAM);
   for (int i=0; i < TAM; i++){
@@ -23,13 +23,12 @@ int main() {
   }
   
   preencherMatriz(p_matriz);
-  printf("\nNúmero central: %d\n", p_matriz[1][1]);
   imprimirMatriz(p_matriz);
   printf("\n\n");
-  
-  //converterBinario(p_bin, p_matriz);
-  // verificarMatriz(p_matriz);
-  // imprimirMatriz(p_matriz);
+
+  verificarMatriz(p_matriz);
+  imprimirMatriz(p_matriz);
+  printf("\n%d", converterBinario(p_bin, p_matriz));
 
 }
 
@@ -65,18 +64,41 @@ void imprimirMatriz(int **p) {
   }
 }
 
-void converterBinario(int *bin, int **p) {
+int converterBinario(int *bin, int **p) {
+  int i = 0, decimal = 0, m = 1;
+  int v[8];
+  //FUNCAO PARA PEGAR APENAS O BINARIO
   for (int j = 0; j < TAM; j++) {
     for (int k = 0; k < TAM; k++) {
-        bin[j+k] = p[j][k];
+      if (p[j][k] != p[1][1]){
+      *(bin + i) = p[j][k];
+      i++;
       }
     }
-  for (int a = 0; a < 8; a++) {
-    printf("%2d |", bin[a]);}
+  } 
+  //ORDENAÇAO DA MATRIZ MANUALMENTE
+  v[0] = bin[3];
+  v[1] = bin[5];
+  v[2] = bin[6];
+  v[3] = bin[7];
+  v[4] = bin[4];
+  v[5] = bin[2];
+  v[6] = bin[1];
+  v[7] = bin[0];
+
+printf("\n\n");
+  for(int r = 0; r < 8; r++) printf("%3d | ", v[r]);
+
+
+
+
+  //CONVERTER BINARIO PARA DECIMAL
+  for(int a = 7; a > -1; a--){
+    if( v[a] == 1 ){
+      decimal += v[a] * m;
+    }
+    m *= 2;
+  }
+  return decimal;
 }
-  // 	for (int i = 8-1; i >= 0; i--) {
-	// 	printf("%d|", bin[i]);
-	// 	if (bin[i] == 1) {
-	// 		novoValor += pow(2, 8-1-i);
-	// 	}
-  // }
+
