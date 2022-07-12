@@ -8,23 +8,23 @@ int main(int argc, char *argv[]) {
 	d = opendir("../datasets/oncotex_pgm");
 	struct pgm img;
 
+	if (argc!=2) {
+		printf("Formato: \n\t %s <CSV>\n",argv[0]);
+		exit(1);
+	}
+
 	if (d) {
 		while ((dir = readdir(d)) != NULL) {
-      if(strcmp(".", dir->d_name) == 0 || strcmp("..", dir->d_name)== 0)
-        continue;
-			printf("%s\n", dir->d_name);
+      if (strcmp(".", dir->d_name) == 0 || strcmp("..", dir->d_name)== 0) 
+				continue;
+			readPGMImage(&img, dir->d_name);
+			// percorrer matriz e substituir numeros centrais
+			// contador 
 		}
 		closedir(d);
 	}
 
-	if (argc!=3) {
-		printf("Formato: \n\t %s <imagemEntrada.pgm> <imagemSaida.pgm>\n",argv[0]);
-		exit(1);
-	}
-
-	readPGMImage(&img,argv[1]);
-
-	writePGMImage(&img, argv[2]);
+	writePGMImage(&img, argv[1]);
 
 	viewPGMImage(&img);
 
