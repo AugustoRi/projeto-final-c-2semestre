@@ -10,5 +10,6 @@ struct pgm {
 };
 
 void readPGMImage(struct pgm *, char *);
+void getArray(unsigned char *, int, int);
 void viewPGMImage(struct pgm *);
 void writePGMImage(struct pgm *, char *);

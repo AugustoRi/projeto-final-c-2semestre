@@ -18,6 +18,7 @@ int main(int argc, char *argv[]) {
       if (strcmp(".", dir->d_name) == 0 || strcmp("..", dir->d_name)== 0) 
 				continue;
 			readPGMImage(&img, dir->d_name);
+			getArray(img.pData, img.c, img.r);
 			// percorrer matriz e substituir numeros centrais
 			// contador 
 		}
