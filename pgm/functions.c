@@ -1,6 +1,7 @@
 #include "functions.h"
 #include "conversao.h"
 
+
 void readPGMImage(struct pgm *pio, char *filename){
 	FILE *fp;
 	char ch;
@@ -117,9 +118,7 @@ void getArray(unsigned char *array, int col, int lin, char *filename) {
 
 			result_center = converterBinario(pBin, result);
 
-			pCounter[result_center] = pCounter[result_center] + 1;
-
-      
+			pCounter[result_center] += 1;
     }
 
   int actualLine = 1;
@@ -192,7 +191,7 @@ void getArray(unsigned char *array, int col, int lin, char *filename) {
 
 			result_center = converterBinario(pBin, result);
 
-			pCounter[result_center] = pCounter[result_center] + 1;
+			pCounter[result_center] += 1;
 
   }
 
