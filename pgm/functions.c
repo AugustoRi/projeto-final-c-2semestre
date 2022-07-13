@@ -266,17 +266,23 @@ void getArray(unsigned char *array, int col, int lin, char *filename) {
 	 printf("filename: %c", filename[0]);
 	CSV(pCounter, filename[0]);
 }
-
-void CSV (unsigned char *counter, char type) {
+void histogram(unsigned char *m, int l, int c, unsigned char *hist) {
+  for (int i = 0; i < l * c; i++) {
+    *(hist + *(m + i)) += 1;
+  }
+}
+void CSV (const unsigned char *hist, char type) {
 	FILE *csv;
+
 	if (!(csv=fopen("dados.csv", "a"))) {
 		puts("Erro ao criar ou ler o arquivo.");
 		exit(1);
 	}
+	csv = fopen("dados.csv", "a");
 	for (int i = 0; i < 256; i++){
-		fprintf(csv, "%d, ", *(counter + i));
+		fprintf(csv, "%d, ", *(hist + i));
 	}
-	fprintf(csv, "%c", type);
+	fprintf(csv, "%c\n", type);
 	fclose(csv);
 }
 

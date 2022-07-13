@@ -2,34 +2,29 @@
 #include <dirent.h>
 #include <string.h>
 
-int main(int argc, char *argv[]) {
+int main() {
 	DIR *d;
 	struct dirent *dir;
-	d = opendir("../datasets/oncotex_pgm");
+	d = opendir("./images/");
 	struct pgm img;
+	int index = 0;
 
-	if (argc!=2) {
-		printf("Formato: \n\t %s <CSV>\n",argv[0]);
-		exit(1);
+
+	if (d) {
+		while ((dir = readdir(d)) != NULL) {
+      if (strcmp(".", dir->d_name) == 0 || strcmp("..", dir->d_name)== 0) 
+				continue;
+			strcpy(nomeArquivo[index], "./images/");
+			strcat(nomeArquivo[index], dir->d_name);
+			// printf("%s\n", nomeArquivo[index]);
+			index++;
+		}
+		for (int i = 0; i < index; i++){
+			readPGMImage(&img, nomeArquivo[i]);
+			getArray(img.pData, img.c, img.r, nomeArquivo[i]);
+		}
+		closedir(d);
 	}
-	readPGMImage(&img, argv[1]);
-	getArray(img.pData, img.c, img.r, argv[1]);
-
-	// if (d) {
-	// 	while ((dir = readdir(d)) != NULL) {
-  //     if (strcmp(".", dir->d_name) == 0 || strcmp("..", dir->d_name)== 0) 
-	// 			continue;
-	// 		readPGMImage(&img, dir->d_name);
-	// 		getArray(img.pData, img.c, img.r);
-	// 		// percorrer matriz e substituir numeros centrais
-	// 		// contador 
-	// 	}
-	// 	closedir(d);
-	// }
-
-	// writePGMImage(&img, argv[1]);
-
-	// viewPGMImage(&img);
 
 	return 0;
 }
