@@ -8,8 +8,8 @@ struct pgm {
 	int mv;
 	unsigned char *pData;
 };
-
 void readPGMImage(struct pgm *, char *);
-void getArray(unsigned char *, int, int);
+void getArray(unsigned char *, int, int, char *);
+void CSV (unsigned char *, char);
 void viewPGMImage(struct pgm *);
 void writePGMImage(struct pgm *, char *);

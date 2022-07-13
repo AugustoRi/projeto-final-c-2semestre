@@ -13,7 +13,8 @@ int main(int argc, char *argv[]) {
 		exit(1);
 	}
 	readPGMImage(&img, argv[1]);
-	getArray(img.pData, img.c, img.r);
+	getArray(img.pData, img.c, img.r, argv[1]);
+
 	// if (d) {
 	// 	while ((dir = readdir(d)) != NULL) {
   //     if (strcmp(".", dir->d_name) == 0 || strcmp("..", dir->d_name)== 0) 

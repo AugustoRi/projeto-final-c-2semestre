@@ -54,7 +54,7 @@ void readPGMImage(struct pgm *pio, char *filename){
 
 }
 
-void getArray(unsigned char *array, int col, int lin) {
+void getArray(unsigned char *array, int col, int lin, char *filename) {
 	unsigned char pCounter[256];
 
 	for (int i = 0; i < 256; i++) {
@@ -260,13 +260,24 @@ void getArray(unsigned char *array, int col, int lin) {
 
 			result_center = converterBinario(pBin, result);
 
-			pCounter[result_center] = pCounter[result_center] + 1;
+			pCounter[result_center] += 1;
 
 	 }
-	// printf("\n\n");
-	// for (int i = 0; i < 256; i++) {
-	// 	printf("%hhu | ", pCounter[i]);
-	// }
+	 printf("filename: %c", filename[0]);
+	CSV(pCounter, filename[0]);
+}
+
+void CSV (unsigned char *counter, char type) {
+	FILE *csv;
+	if (!(csv=fopen("dados.csv", "a"))) {
+		puts("Erro ao criar ou ler o arquivo.");
+		exit(1);
+	}
+	for (int i = 0; i < 256; i++){
+		fprintf(csv, "%d, ", *(counter + i));
+	}
+	fprintf(csv, "%c", type);
+	fclose(csv);
 }
 
 void writePGMImage(struct pgm *pio, char *filename){
