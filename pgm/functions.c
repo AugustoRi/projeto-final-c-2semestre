@@ -60,27 +60,8 @@ void getArray(unsigned char *array, int col, int lin) {
 	for (int i = 0; i < 256; i++) {
 		pCounter[i] = 0;
 	}
-	//atualizar a matriz com os numeros binarios transformados em decimais
-	//fazer um contador de frequencia com essa nova matriz
-	/*
-		1. inicializar o contador de frequencia em que no max 256(0->255) -> o valor inicial é 0 de todos
-		2. com o contador de frequencia, eu vou pegar o numero gerado, e add no contador:
-		ex: numero gerado: 255
-		contador[numero_gerado] = contador[numero_gerado] + 1;
 
-		contador de frequencia = [256 posicoes]
-	*/
-
-	/*
-	CSV
-	img1 -> mandar contador de frequencia + rotulo(filename[0])
-	img2 -> mandar contador de frequencia + rotulo(filename[0])
-	.
-	.
-	.
-	*/
-	puts("matriz gerada da primeira linha");
-  for (int i = 0; i < col; i++) {
+   for (int i = 0; i < col; i++) {
     unsigned char successor, up_successor, down_successor;
     unsigned char predecessor, up_predecessor, down_predecessor;
     unsigned char center = *(array + i), up_center, down_center = *(array + (i + col));
@@ -113,16 +94,11 @@ void getArray(unsigned char *array, int col, int lin) {
         down_successor = 0;
       }
 
-			unsigned char *pData = NULL, *result = NULL, *pBin = NULL, result_center;
 
-			pData = malloc(col * lin * sizeof(unsigned char));
-			result = malloc(col * lin * sizeof(unsigned char));
-			pBin = malloc(8 * sizeof(unsigned char));
-
-			if (!pData) {
-				puts("erro");
-				exit(1);
-			}
+		unsigned char *pData = NULL, *result = NULL, *pBin = NULL, result_center;
+		pData = malloc(col * lin * sizeof(unsigned char));
+		result = malloc(col * lin * sizeof(unsigned char));
+		pBin = malloc(8 * sizeof(unsigned char));
 
 			*(pData + 0) = up_predecessor;
 			*(pData + 1) = up_center;
@@ -136,18 +112,16 @@ void getArray(unsigned char *array, int col, int lin) {
 			*(pData + 7) = down_center;
 			*(pData + 8) = down_successor;
 
-			verificarMatriz(pData, (col * lin), &result);
-			result_center = converterBinario(&pBin, pData);
+				verificarMatriz(pData, result);
+
+
+			result_center = converterBinario(pBin, result);
+
 			pCounter[result_center] = pCounter[result_center] + 1;
 
-      // printf("\n\n");
-      // printf("%hhu | %hhu | %hhu \n", up_predecessor, up_center, up_successor);
-      // printf("%hhu | %hhu | %hhu \n", predecessor, center, successor);
-      // printf("%hhu | %hhu | %hhu \n", down_predecessor, down_center, down_successor);
       
     }
 
-  puts("matriz gerada ate primeiro indice da ultima linha");
   int actualLine = 1;
   for (int j = col; j < (col * lin) - col; j++) {
     unsigned char successor, up_successor, down_successor;
@@ -191,41 +165,37 @@ void getArray(unsigned char *array, int col, int lin) {
         actualLine++;
       }
 
-      // printf("\n\n");
-      // printf("%hhu | %hhu | %hhu \n", up_predecessor, up_center, up_successor);
-      // printf("%hhu | %hhu | %hhu \n", predecessor, center, successor);
-      // printf("%hhu | %hhu | %hhu \n", down_predecessor, down_center, down_successor);
-
 		unsigned char *pData = NULL, *result = NULL, *pBin = NULL, result_center;
 
-		pData = malloc(col * lin * sizeof(unsigned char));
-		result = malloc(col * lin * sizeof(unsigned char));
-		pBin = malloc(8 * sizeof(unsigned char));
+			pData = malloc(col * lin * sizeof(unsigned char));
+			result = malloc(col * lin * sizeof(unsigned char));
+			pBin = malloc(8 * sizeof(unsigned char));
 
-		if (!pData) {
-			puts("erro");
-			exit(1);
-		}
+			if (!pData) {
+				puts("erro");
+				exit(1);
+			}
 
-		*(pData + 0) = up_predecessor;
-		*(pData + 1) = up_center;
-		*(pData + 2) = up_successor;
+			*(pData + 0) = up_predecessor;
+			*(pData + 1) = up_center;
+			*(pData + 2) = up_successor;
 
-		*(pData + 3) = predecessor;
-		*(pData + 4) = center;
-		*(pData + 5) = successor;
+			*(pData + 3) = predecessor;
+			*(pData + 4) = center;
+			*(pData + 5) = successor;
 
-		*(pData + 6) = down_predecessor;
-		*(pData + 7) = down_center;
-		*(pData + 8) = down_successor;
+			*(pData + 6) = down_predecessor;
+			*(pData + 7) = down_center;
+			*(pData + 8) = down_successor;
 
-		verificarMatriz(pData, (col * lin), &result);
-		result_center = converterBinario(&pBin, pData);
-		pCounter[result_center] = pCounter[result_center] + 1;
-		
+			verificarMatriz(pData, result);
+
+			result_center = converterBinario(pBin, result);
+
+			pCounter[result_center] = pCounter[result_center] + 1;
+
   }
 
-  puts("matriz gerada da ultima linha");
   for (int k = (col * lin) - col; k < (col * lin); k++) {
     unsigned char successor, up_successor, down_successor;
     unsigned char predecessor, up_predecessor, down_predecessor;
@@ -262,43 +232,41 @@ void getArray(unsigned char *array, int col, int lin) {
 			up_successor = 0;
 			successor = 0;
 		}
-
-		// printf("\n\n");
-		// printf("%hhu | %hhu | %hhu \n", up_predecessor, up_center, up_successor);
-		// printf("%hhu | %hhu | %hhu \n", predecessor, center, successor);
-		// printf("%hhu | %hhu | %hhu \n", down_predecessor, down_center, down_successor);
 		
 		unsigned char *pData = NULL, *result = NULL, *pBin = NULL, result_center;
 
-		pData = malloc(col * lin * sizeof(unsigned char));
-		result = malloc(col * lin * sizeof(unsigned char));
-		pBin = malloc(8 * sizeof(unsigned char));
+			pData = malloc(col * lin * sizeof(unsigned char));
+			result = malloc(col * lin * sizeof(unsigned char));
+			pBin = malloc(8 * sizeof(unsigned char));
 
-		if (!pData) {
-			puts("erro");
-			exit(1);
-		}
+			if (!pData) {
+				puts("erro");
+				exit(1);
+			}
 
-		*(pData + 0) = up_predecessor;
-		*(pData + 1) = up_center;
-		*(pData + 2) = up_successor;
+			*(pData + 0) = up_predecessor;
+			*(pData + 1) = up_center;
+			*(pData + 2) = up_successor;
 
-		*(pData + 3) = predecessor;
-		*(pData + 4) = center;
-		*(pData + 5) = successor;
+			*(pData + 3) = predecessor;
+			*(pData + 4) = center;
+			*(pData + 5) = successor;
 
-		*(pData + 6) = down_predecessor;
-		*(pData + 7) = down_center;
-		*(pData + 8) = down_successor;
+			*(pData + 6) = down_predecessor;
+			*(pData + 7) = down_center;
+			*(pData + 8) = down_successor;
 
-		verificarMatriz(pData, (col * lin), &result);
-		result_center = converterBinario(&pBin, pData);
-		pCounter[result_center] = pCounter[result_center] + 1;
-	}
+			verificarMatriz(pData, result);
 
-	for (int i = 0; i < 256; i++) {
-		printf("%hhu", pCounter[i]);
-	}
+			result_center = converterBinario(pBin, result);
+
+			pCounter[result_center] = pCounter[result_center] + 1;
+
+	 }
+	// printf("\n\n");
+	// for (int i = 0; i < 256; i++) {
+	// 	printf("%hhu | ", pCounter[i]);
+	// }
 }
 
 void writePGMImage(struct pgm *pio, char *filename){

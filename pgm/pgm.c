@@ -12,22 +12,23 @@ int main(int argc, char *argv[]) {
 		printf("Formato: \n\t %s <CSV>\n",argv[0]);
 		exit(1);
 	}
+	readPGMImage(&img, argv[1]);
+	getArray(img.pData, img.c, img.r);
+	// if (d) {
+	// 	while ((dir = readdir(d)) != NULL) {
+  //     if (strcmp(".", dir->d_name) == 0 || strcmp("..", dir->d_name)== 0) 
+	// 			continue;
+	// 		readPGMImage(&img, dir->d_name);
+	// 		getArray(img.pData, img.c, img.r);
+	// 		// percorrer matriz e substituir numeros centrais
+	// 		// contador 
+	// 	}
+	// 	closedir(d);
+	// }
 
-	if (d) {
-		while ((dir = readdir(d)) != NULL) {
-      if (strcmp(".", dir->d_name) == 0 || strcmp("..", dir->d_name)== 0) 
-				continue;
-			readPGMImage(&img, dir->d_name);
-			getArray(img.pData, img.c, img.r);
-			// percorrer matriz e substituir numeros centrais
-			// contador 
-		}
-		closedir(d);
-	}
+	// writePGMImage(&img, argv[1]);
 
-	writePGMImage(&img, argv[1]);
-
-	viewPGMImage(&img);
+	// viewPGMImage(&img);
 
 	return 0;
 }

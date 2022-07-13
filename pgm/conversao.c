@@ -27,14 +27,18 @@
 //   }
 // }
 
-void verificarMatriz(unsigned char *p, int tam, unsigned char *pResult) {
-  for (int j = 0; j < tam; j++) {
+void verificarMatriz(unsigned char *p, unsigned char *pResult) {
+  for (int j = 0; j < 9; j++) {
       if (*(p + j) < *(p + 4)) {
         *(pResult + j) = 0;
       } else if (*(p + j) >= *(p + 4)) {
         *(pResult + j) = 1;
       }
   }
+  // printf("\n\n");
+  // for (int i=0;i<tam;i++){
+  //   printf("%hhu | ", *(pResult + i));
+  // }
 }
 
 // void imprimirMatriz(int *p) {
@@ -63,34 +67,34 @@ int converterBinario(unsigned char *bin, unsigned char *p) {
   printf("\n\n");
 	for (int j = 3; j < TAM * TAM; j += 3 ) {
 		*(bin + a) = *(p + j);
-    printf("%d ", *(bin + a));
+    // printf("%d ", *(bin + a));
 		a++;
 	}
 
 	//segundo for
 	for (int k = TAM * TAM - 2; k < TAM * TAM; k++) {
 		*(bin + a) = *(p + k);
-    printf("%d ", *(bin + a));
+    // printf("%d ", *(bin + a));
 		a++;
 	}
 
 	//terceiro for 
 	for (int l = 5; l > 1; l -= 3) {
 		*(bin + a) = *(p + l);
-    printf("%d ", *(bin + a));
+    // printf("%d ", *(bin + a));
 		a++;
 	}
 
 	//quarto for
 	for (int h = 1; h >= 0; h--) {
 		*(bin + a) = *(p + h);
-    printf("%d ", *(bin + a));
+    // printf("%d ", *(bin + a));
 		a++;
 	}
 
 // ================
-   printf("\n\n");
-  for(int r = 0; r < 8; r++) printf("%3d | ", bin[r]);
+  //  printf("\n\n");
+  // for(int r = 0; r < 8; r++) printf("%3d | ", bin[r]);
 
 
   //CONVERTER BINARIO PARA DECIMAL
@@ -100,5 +104,6 @@ int converterBinario(unsigned char *bin, unsigned char *p) {
     }
     m *= 2;
   }
+  printf("%d", decimal);
   return decimal;
 }

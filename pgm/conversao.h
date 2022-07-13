@@ -8,7 +8,7 @@
 // PROTÓTIPOS
 void preencherMatriz(int *p);
 void imprimirMatriz(int *p);
-void verificarMatriz(unsigned char *, int tam, unsigned char *);
+void verificarMatriz(unsigned char *, unsigned char *);
 int converterBinario(unsigned char *bin, unsigned char *p);
 
 struct Matriz {
