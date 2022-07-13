@@ -56,7 +56,7 @@ void readPGMImage(struct pgm *pio, char *filename){
 }
 
 void getArray(unsigned char *array, int col, int lin, char *filename) {
-	unsigned char pCounter[256];
+	unsigned char pCounter[255];
 
 	for (int i = 0; i < 256; i++) {
 		pCounter[i] = 0;
